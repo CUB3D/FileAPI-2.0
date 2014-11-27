@@ -22,4 +22,24 @@ public class Writer
 	{
 		this.output.writeInt(i);
 	}
+	
+	public void writeFloat(float f) throws IOException
+	{
+		this.output.writeFloat(f);
+	}
+	
+	public void writeDouble(double d) throws IOException
+	{
+		this.output.writeDouble(d);
+	}
+	
+	public void writeLong(long l) throws IOException
+	{
+		this.output.writeLong(l);
+	}
+	
+	public void writeByte(byte b) throws IOException
+	{
+		this.output.writeByte(b);
+	}
 }

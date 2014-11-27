@@ -22,4 +22,29 @@ public class Reader
 	{
 		return input.readInt();
 	}
+	
+	public float readFloat() throws IOException
+	{
+		return input.readFloat();
+	}
+	
+	public double readDouble() throws IOException
+	{
+		return input.readDouble();
+	}
+	
+	public long readLong() throws IOException
+	{
+		return input.readLong();
+	}
+	
+	public byte readByte() throws IOException
+	{
+		return input.readByte();
+	}
+	
+	public int available() throws IOException
+	{
+		return input.available();
+	}
 }

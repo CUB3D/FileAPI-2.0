@@ -1,13 +1,12 @@
 package cub3d.file.reader;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 import cub3d.file.main.DataReadException;
 
-public class PropertieReader extends Reader
+public class PropertieReader
 {
 	private Map<String, String> values = new HashMap<String, String>();
 	
@@ -15,19 +14,21 @@ public class PropertieReader extends Reader
 	
 	private boolean loaded = false;
 	
-	public PropertieReader(InputStream i)
+	private Reader reader;
+	
+	public PropertieReader(Reader re)
 	{
-		this(i, ":");
+		this(re, ":");
 	}
 	
-	public PropertieReader(InputStream i, String seperator)
+	public PropertieReader(Reader re, String seperator)
 	{
-		super(i);
+		this.reader = re;
 		
 		this.seperator = seperator;
 	}
 	
-	public String getString(String name) throws IOException
+	public String getString(String name) throws DataReadException, IOException
 	{
 		if(!loaded)
 			load();
@@ -35,71 +36,41 @@ public class PropertieReader extends Reader
 		if(values.containsValue(name))
 			return values.get(name);
 		else
-			return null;
+			throw new DataReadException("Value '" + name + "' doesn't exist.");
 	}
 	
 	public int getInteger(String name) throws DataReadException, IOException
 	{
-		if(!loaded)
-			load();
-		
-		if(values.containsValue(name))
-			return Integer.parseInt(values.get(name));
-		else
-			throw new DataReadException("Value '" + name + "' doesn't exist.");
+		return Integer.parseInt(getString(name));
 	}
 	
 	public float getFloat(String name) throws DataReadException, IOException
 	{
-		if(!loaded)
-			load();
-		
-		if(values.containsValue(name))
-			return Float.parseFloat(values.get(name));
-		else
-			throw new DataReadException("Value '" + name + "' doesn't exist.");
+		return Float.parseFloat(getString(name));
 	}
 	
 	public double getDouble(String name) throws DataReadException, IOException
 	{
-		if(!loaded)
-			load();
-		
-		if(values.containsValue(name))
-			return Double.parseDouble(values.get(name));
-		else
-			throw new DataReadException("Value '" + name + "' doesn't exist.");
+		return Double.parseDouble(getString(name));
 	}
 	
 	public long getLong(String name) throws DataReadException, IOException
 	{
-		if(!loaded)
-			load();
-		
-		if(values.containsValue(name))
-			return Long.parseLong(values.get(name));
-		else
-			throw new DataReadException("Value '" + name + "' doesn't exist.");
+		return Long.parseLong(getString(name));
 	}
 	
 	public byte getbyte(String name) throws DataReadException, IOException
 	{
-		if(!loaded)
-			load();
-		
-		if(values.containsValue(name))
-			return Byte.parseByte(values.get(name));
-		else
-			throw new DataReadException("Value '" + name + "' doesn't exist.");
+		return Byte.parseByte(getString(name));
 	}
 	
 	public void load() throws IOException
 	{
 		loaded = true;
 		
-		if(available() > 0)
+		if(reader.available() > 0)
 		{
-			String line = readString();
+			String line = reader.readLine();
 			
 			String[] sections = line.split(seperator);
 			

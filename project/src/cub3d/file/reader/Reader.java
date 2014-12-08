@@ -13,9 +13,20 @@ public class Reader
 		this.input = new DataInputStream(is);
 	}
 	
-	public String readString() throws IOException
+	public String readLine() throws IOException
 	{
-		return input.readUTF();
+		String s = "";
+		
+		while(available() > 0)
+		{
+			char c = (char) readByte();
+			
+			if(c == '\n') break;
+			
+			s += c;
+		}
+		
+		return s;
 	}
 	
 	public int readInt() throws IOException

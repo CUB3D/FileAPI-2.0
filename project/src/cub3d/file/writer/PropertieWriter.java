@@ -1,27 +1,29 @@
 package cub3d.file.writer;
 
 import java.io.IOException;
-import java.io.OutputStream;
 
-public class PropertieWriter extends Writer
+public class PropertieWriter
 {
+	private Writer writer;
+	
 	private String seperator;
 	
-	public PropertieWriter(OutputStream os)
+	public PropertieWriter(Writer wr)
 	{
-		this(os, ":");
+		this(wr, ":");
 	}
 	
-	public PropertieWriter(OutputStream os, String seperator)
+	public PropertieWriter(Writer wr, String seperator)
 	{
-		super(os);
 		
 		this.seperator = seperator;
 	}
 	
+	
+	
 	public void addPropertie(String name, String value) throws IOException
 	{
-		super.writeString(name + seperator + value);
+		writer.writeString(name + seperator + value);
 	}
 	
 	public void addPropertie(String name, int value) throws IOException

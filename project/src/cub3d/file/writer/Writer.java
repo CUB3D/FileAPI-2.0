@@ -42,4 +42,9 @@ public class Writer
 	{
 		this.output.writeByte(b);
 	}
+	
+	public DataOutputStream getStream()
+	{
+		return output;
+	}
 }

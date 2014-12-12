@@ -13,13 +13,13 @@ import cub3d.file.reader.Reader;
 import cub3d.file.writer.Writer;
 
 
-public class File
+public class FileAPI
 {
 	private boolean isLocal = false;
 	
 	private String location;
 	
-	public File(String s)
+	public FileAPI(String s)
 	{
 		if(s.startsWith("\\/"))
 			this.isLocal = true;

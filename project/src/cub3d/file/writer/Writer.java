@@ -6,16 +6,16 @@ import java.io.OutputStream;
 
 public class Writer
 {
-	private DataOutputStream output;
+	protected DataOutputStream output;
 	
 	public Writer(OutputStream os)
 	{
 		this.output = new DataOutputStream(os);
 	}
 	
-	public void writeString(String s) throws IOException
+	public void writeString(String str) throws IOException
 	{
-		this.output.writeUTF(s);
+		this.output.writeUTF(str);
 	}
 	
 	public void writeInt(int i) throws IOException
@@ -40,10 +40,16 @@ public class Writer
 	
 	public void writeByte(byte b) throws IOException
 	{
-		this.output.writeByte(b);
+		this.output.write(b);
 	}
 	
-	public DataOutputStream getStream()
+	public void cleanup() throws IOException
+	{
+		this.output.flush();
+		this.output.close();
+	}
+	
+	public OutputStream getStream()
 	{
 		return output;
 	}

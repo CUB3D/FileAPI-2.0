@@ -6,27 +6,16 @@ import java.io.InputStream;
 
 public class Reader
 {
-	private DataInputStream input;
+	protected DataInputStream input;
 	
 	public Reader(InputStream is)
 	{
 		this.input = new DataInputStream(is);
 	}
 	
-	public String readLine() throws IOException
+	public String readString() throws IOException
 	{
-		String s = "";
-		
-		while(available() > 0)
-		{
-			char c = (char) readByte();
-			
-			if(c == '\n') break;
-			
-			s += c;
-		}
-		
-		return s;
+		return input.readUTF();
 	}
 	
 	public int readInt() throws IOException
@@ -57,5 +46,10 @@ public class Reader
 	public int available() throws IOException
 	{
 		return input.available();
+	}
+	
+	public InputStream getStream()
+	{
+		return input;
 	}
 }

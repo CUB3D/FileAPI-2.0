@@ -1,5 +1,6 @@
 package cub3d.file.main;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -21,9 +22,13 @@ public class FileAPI
 		this.location = s;
 	}
 	
+	public FileAPI(File f)
+	{
+		this(f.getAbsolutePath());
+	}
+	
 	public Writer getWriter() throws IOException
 	{
-		
 		Path p = Paths.get(location);
 		
 		OutputStream os = Files.newOutputStream(p, StandardOpenOption.WRITE);

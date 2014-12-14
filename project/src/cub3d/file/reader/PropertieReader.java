@@ -6,15 +6,13 @@ import java.util.Map;
 
 import cub3d.file.main.DataReadException;
 
-public class PropertieReader
+public class PropertieReader extends BasicReader
 {
 	private Map<String, String> values = new HashMap<String, String>();
 	
 	private String seperator;
 	
 	private boolean loaded = false;
-	
-	private Reader reader;
 	
 	public PropertieReader(Reader re)
 	{
@@ -23,7 +21,7 @@ public class PropertieReader
 	
 	public PropertieReader(Reader re, String seperator)
 	{
-		this.reader = re;
+		super(re);
 		
 		this.seperator = seperator;
 	}
@@ -68,9 +66,9 @@ public class PropertieReader
 	{
 		loaded = true;
 		
-		if(reader.available() > 0)
+		if(available() > 0)
 		{
-			String line = reader.readLine();
+			String line = readLine();
 			
 			String[] sections = line.split(seperator);
 			

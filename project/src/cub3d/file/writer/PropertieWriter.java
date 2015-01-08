@@ -2,6 +2,8 @@ package cub3d.file.writer;
 
 import java.io.IOException;
 
+import cub3d.file.main.Value;
+
 public class PropertieWriter extends BasicWriter
 {
 	private String seperator;
@@ -41,5 +43,10 @@ public class PropertieWriter extends BasicWriter
 	public void addPropertie(String name, double value) throws IOException
 	{
 		addPropertie(name, "" + value);
+	}
+	
+	public void addPropertie(Value value) throws IOException
+	{
+		addPropertie(value.getName(), value.getString());
 	}
 }

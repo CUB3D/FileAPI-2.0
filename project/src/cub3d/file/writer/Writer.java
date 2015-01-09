@@ -12,36 +12,19 @@ public class Writer
 	{
 		this.output = new DataOutputStream(os);
 	}
+
 	
-	public void writeString(String str) throws IOException
-	{
-		this.output.writeUTF(str);
-	}
-	
-	public void writeInt(int i) throws IOException
-	{
-		this.output.writeInt(i);
-	}
-	
-	public void writeFloat(float f) throws IOException
-	{
-		this.output.writeFloat(f);
-	}
-	
-	public void writeDouble(double d) throws IOException
-	{
-		this.output.writeDouble(d);
-	}
-	
-	public void writeLong(long l) throws IOException
-	{
-		this.output.writeLong(l);
-	}
-	
-	public void writeByte(byte b) throws IOException
+	public void writeRawByte(byte b) throws IOException
 	{
 		this.output.write(b);
 	}
+
+	public void writeRawBytes(byte[] bytes, int start, int end) throws IOException
+	{
+		for(int i = 0; i < end; i++)
+			writeRawByte(bytes[start + i]);
+	}
+	
 	
 	public void cleanup() throws IOException
 	{

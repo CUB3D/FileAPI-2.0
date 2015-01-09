@@ -13,34 +13,9 @@ public class Reader
 		this.input = new DataInputStream(is);
 	}
 	
-	public String readString() throws IOException
+	public byte readRawByte() throws IOException
 	{
-		return input.readUTF();
-	}
-	
-	public int readInt() throws IOException
-	{
-		return input.readInt();
-	}
-	
-	public float readFloat() throws IOException
-	{
-		return input.readFloat();
-	}
-	
-	public double readDouble() throws IOException
-	{
-		return input.readDouble();
-	}
-	
-	public long readLong() throws IOException
-	{
-		return input.readLong();
-	}
-	
-	public byte readByte() throws IOException
-	{
-		return input.readByte();
+		return (byte) this.input.read();
 	}
 	
 	public int available() throws IOException

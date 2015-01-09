@@ -20,31 +20,26 @@ public class BasicReader extends Reader
 		return input.readLine();
 	}
 	
-	@Override
 	public int readInt() throws IOException
 	{
 		return Integer.parseInt(readLine());
 	}
 	
-	@Override
 	public float readFloat() throws IOException
 	{
 		return Float.parseFloat(readLine());
 	}
 	
-	@Override
 	public double readDouble() throws IOException
 	{
 		return Double.parseDouble(readLine());
 	}
 	
-	@Override
 	public long readLong() throws IOException
 	{
 		return Long.parseLong(readLine());
 	}
 	
-	@Override
 	public byte readByte() throws IOException
 	{
 		return Byte.parseByte(readLine());

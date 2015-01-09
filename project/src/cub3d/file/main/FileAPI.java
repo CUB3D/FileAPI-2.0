@@ -16,10 +16,13 @@ import cub3d.file.writer.Writer;
 public class FileAPI
 {
 	private String location;
+	private Path path;
 	
 	public FileAPI(String s)
 	{
 		this.location = s;
+		
+		this.path = Paths.get(location);
 	}
 	
 	public FileAPI(File f)
@@ -29,19 +32,20 @@ public class FileAPI
 	
 	public Writer getWriter() throws IOException
 	{
-		Path p = Paths.get(location);
-		
-		OutputStream os = Files.newOutputStream(p, StandardOpenOption.WRITE);
+		OutputStream os = Files.newOutputStream(path, StandardOpenOption.WRITE);
 		
 		return new Writer(os);
 	}
 	
 	public Reader getReader() throws IOException
 	{	
-		Path p = Paths.get(location);
-		
-		InputStream is = Files.newInputStream(p, StandardOpenOption.READ);
+		InputStream is = Files.newInputStream(path, StandardOpenOption.READ);
 		
 		return new Reader(is);
+	}
+	
+	public void createFile() throws IOException
+	{
+		this.path = Files.createFile(path);
 	}
 }

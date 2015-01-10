@@ -50,7 +50,7 @@ public class Element
 		return null;
 	}
 	
-	public void addElements(Element e)
+	public void addElement(Element e)
 	{
 		elements.add(e);
 	}

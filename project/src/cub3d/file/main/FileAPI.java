@@ -32,7 +32,7 @@ public class FileAPI
 
 	public Writer getWriter() throws IOException
 	{
-		OutputStream os = Files.newOutputStream(path, StandardOpenOption.WRITE);
+		OutputStream os = Files.newOutputStream(path, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
 
 		return new Writer(os);
 	}

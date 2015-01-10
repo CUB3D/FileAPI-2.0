@@ -12,7 +12,6 @@ public class Writer
 	{
 		this.output = new DataOutputStream(os);
 	}
-
 	
 	public void writeRawByte(byte b) throws IOException
 	{

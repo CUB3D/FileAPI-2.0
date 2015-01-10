@@ -17,33 +17,33 @@ public class FileAPI
 {
 	private String location;
 	private Path path;
-	
+
 	public FileAPI(String s)
 	{
 		this.location = s;
-		
+
 		this.path = Paths.get(location);
 	}
-	
+
 	public FileAPI(File f)
 	{
 		this(f.getAbsolutePath());
 	}
-	
+
 	public Writer getWriter() throws IOException
 	{
 		OutputStream os = Files.newOutputStream(path, StandardOpenOption.WRITE);
-		
+
 		return new Writer(os);
 	}
-	
+
 	public Reader getReader() throws IOException
-	{	
+	{
 		InputStream is = Files.newInputStream(path, StandardOpenOption.READ);
-		
+
 		return new Reader(is);
 	}
-	
+
 	public void createFile() throws IOException
 	{
 		this.path = Files.createFile(path);

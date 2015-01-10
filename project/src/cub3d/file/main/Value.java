@@ -16,6 +16,11 @@ public class Value
 		return value;
 	}
 	
+	public String getString(String def)
+	{
+		return getString() == null ? def : getString();
+	}
+	
 	public byte getByte() throws ParseException
 	{
 		try
@@ -23,6 +28,16 @@ public class Value
 			return Byte.parseByte(value);
 		}catch(Exception e) {
 			throw new ParseException("Cannot parse \'" + this.value + "\' as a Byte!");
+		}
+	}
+	
+	public byte getByte(byte def)
+	{
+		try
+		{
+			return getByte();
+		}catch(ParseException e) {
+			return def;
 		}
 	}
 	
@@ -37,6 +52,16 @@ public class Value
 		}
 	}
 	
+	public boolean getBoolean(boolean def)
+	{
+		try
+		{
+			return getBoolean();
+		}catch(ParseException e) {
+			return def;
+		}
+	}
+	
 	public int getInt() throws ParseException
 	{
 		try
@@ -44,6 +69,16 @@ public class Value
 			return Integer.parseInt(value);
 		}catch(Exception e) {
 			throw new ParseException("Cannot parse \'" + this.value + "\' as a Integer!");
+		}
+	}
+	
+	public int getInt(int def)
+	{
+		try
+		{
+			return getInt();
+		}catch(ParseException e) {
+			return def;
 		}
 	}
 	
@@ -57,6 +92,16 @@ public class Value
 		}
 	}
 	
+	public long getLong(long def)
+	{
+		try
+		{
+			return getLong();
+		}catch(ParseException e) {
+			return def;
+		}
+	}
+	
 	public float getFloat() throws ParseException
 	{
 		try
@@ -67,6 +112,16 @@ public class Value
 		}
 	}
 	
+	public float getFloat(float def)
+	{
+		try
+		{
+			return getFloat();
+		}catch(ParseException e) {
+			return def;
+		}
+	}
+	
 	public double getDouble() throws ParseException
 	{
 		try
@@ -74,6 +129,16 @@ public class Value
 			return Double.parseDouble(value);
 		}catch(Exception e) {
 			throw new ParseException("Cannot parse \'" + this.value + "\' as a Float!");
+		}
+	}
+	
+	public double getDouble(double def)
+	{
+		try
+		{
+			return getDouble();
+		}catch(ParseException e) {
+			return def;
 		}
 	}
 	

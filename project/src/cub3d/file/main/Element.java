@@ -1,20 +1,20 @@
 package cub3d.file.main;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Element
 {
 	private String name;
-	private List<Value> values;
-	private List<Element> elements;
+	private Set<Value> values;
+	private Set<Element> elements;
 
 
 	public Element(String name)
 	{
 		this.name = name;
-		values = new ArrayList<Value>();
-		elements = new ArrayList<Element>();
+		values = new HashSet<Value>();
+		elements = new HashSet<Element>();
 	}
 
 	public Value getValue(String name)
@@ -36,7 +36,7 @@ public class Element
 		values.add(val);
 	}
 	
-	public List<Value> getValues()
+	public Set<Value> getValues()
 	{
 		return values;
 	}
@@ -55,7 +55,7 @@ public class Element
 		elements.add(e);
 	}
 	
-	public List<Element> getElements()
+	public Set<Element> getElements()
 	{
 		return elements;
 	}

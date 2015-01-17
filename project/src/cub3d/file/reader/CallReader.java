@@ -2,7 +2,9 @@ package cub3d.file.reader;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import cub3d.file.main.Element;
 import cub3d.file.main.Value;
@@ -12,7 +14,7 @@ public class CallReader extends BasicReader
 {
 	private boolean hasLoaded;
 	
-	private List<Element> elements = new ArrayList<Element>();
+	private Set<Element> elements = new HashSet<Element>();
 	
 	private String startElement = "{";
 	private String endElement = "}";
@@ -27,7 +29,7 @@ public class CallReader extends BasicReader
 	}
 
 	
-	public List<Element> getElements()
+	public Set<Element> getElements()
 	{
 		return elements;
 	}
@@ -73,7 +75,7 @@ public class CallReader extends BasicReader
 		return s;
 	}
 
-	private int pharseElement(int i, String key, List<String> content, List<Element> elements)
+	private int pharseElement(int i, String key, List<String> content, Set<Element> elements)
 	{
 		i++;
 

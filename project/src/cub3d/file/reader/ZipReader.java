@@ -58,4 +58,10 @@ public class ZipReader extends Reader
 
 		return null;
 	}
+	
+	public Map<ZipEntry, ByteArrayOutputStream> getEntrys() throws IOException
+	{
+		load();
+		return entrys;
+	}
 }

@@ -7,46 +7,51 @@ import java.util.zip.ZipOutputStream;
 public class ZipWriter extends Writer
 {
 	private ZipOutputStream output;
-	
+
 	public ZipWriter(Writer w)
 	{
 		super(w.getStream());
-		
+
 		this.output = new ZipOutputStream(getStream());
 	}
-	
+
 	public void setEntry(ZipEntry entry) throws IOException
 	{
 		this.output.putNextEntry(entry);
 	}
-	
+
 	public Writer getCurrentWriter()
 	{
 		return new Writer(this.output);
 	}
-	
+
 	public void finishEntry() throws IOException
 	{
 		this.output.closeEntry();
 	}
-	
+
 	public Writer getWriterFor(String name) throws IOException
 	{
 		ZipEntry entry = new ZipEntry(name);
-		
+
 		setEntry(entry);
-		
+
 		return getCurrentWriter();
 	}
-	
+
 	@Override
-	public void cleanup() throws IOException
+	public boolean cleanup()
 	{
-		this.output.flush();
-		
-		this.output.close();
-		
-		super.cleanup();
+		try
+		{
+			this.output.flush();
+			this.output.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		return super.cleanup();
 	}
-	
+
 }

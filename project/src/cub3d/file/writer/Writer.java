@@ -7,12 +7,12 @@ import java.io.OutputStream;
 public class Writer
 {
 	protected DataOutputStream output;
-	
+
 	public Writer(OutputStream os)
 	{
 		this.output = new DataOutputStream(os);
 	}
-	
+
 	public void writeRawByte(byte b) throws IOException
 	{
 		this.output.write(b);
@@ -23,14 +23,21 @@ public class Writer
 		for(int i = 0; i < end; i++)
 			writeRawByte(bytes[start + i]);
 	}
-	
-	
-	public void cleanup() throws IOException
+
+
+	public boolean cleanup()
 	{
-		this.output.flush();
-		this.output.close();
+		try
+		{
+			this.output.flush();
+			this.output.close();
+			return true;
+		}catch(IOException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
-	
+
 	public OutputStream getStream()
 	{
 		return output;

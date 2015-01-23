@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -30,22 +31,50 @@ public class FileAPI
 		this(f.getAbsolutePath());
 	}
 
+
+
 	public Writer getWriter() throws IOException
 	{
-		OutputStream os = Files.newOutputStream(path, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
+		return getWriter(StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
+	}
+
+	public Writer getWriter(OpenOption... options) throws IOException
+	{
+		OutputStream os = Files.newOutputStream(path, options);
 
 		return new Writer(os);
 	}
 
+
 	public Reader getReader() throws IOException
 	{
-		InputStream is = Files.newInputStream(path, StandardOpenOption.READ);
+		return getReader(StandardOpenOption.READ);
+	}
+
+	public Reader getReader(OpenOption... options) throws IOException
+	{
+		InputStream is = Files.newInputStream(path, options);
 
 		return new Reader(is);
 	}
 
+
+
 	public void createFile() throws IOException
 	{
-		this.path = Files.createFile(path);
+		if(!Files.exists(path))
+			Files.createFile(path);
+	}
+
+	public void deleteFile() throws IOException
+	{
+		if(Files.exists(path))
+			Files.delete(this.path);
+	}
+
+
+	public Path getPath()
+	{
+		return this.path;
 	}
 }

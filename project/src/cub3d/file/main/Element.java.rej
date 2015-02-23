@@ -1,0 +1,28 @@
+diff a/project/src/cub3d/file/main/Element.java b/project/src/cub3d/file/main/Element.java	(rejected hunks)
+@@ -1,20 +1,20 @@
+ package cub3d.file.main;
+ 
+-import java.util.ArrayList;
+-import java.util.List;
++import java.util.HashSet;
++import java.util.Set;
+ 
+ public class Element
+ {
+ 	private String name;
+-	private List<Value> values;
+-	private List<Element> elements;
++	private Set<Value> values;
++	private Set<Element> elements;
+ 
+ 
+ 	public Element(String name)
+ 	{
+ 		this.name = name;
+-		values = new ArrayList<Value>();
+-		elements = new ArrayList<Element>();
++		values = new HashSet<Value>();
++		elements = new HashSet<Element>();
+ 	}
+ 
+ 	public Value getValue(String name)
